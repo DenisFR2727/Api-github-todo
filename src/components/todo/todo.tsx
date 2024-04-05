@@ -66,7 +66,7 @@ if(issues.length === 0){
                                     <span># {issue.number}</span>
                                      <p>
                                         <a className="admin" 
-                                           href={issue.user.html_url}>
+                                           href={issue.user?.html_url}>
                                            Admin
                                         </a> | Comments: {issue.comments}
                                      </p>

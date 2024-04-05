@@ -17,9 +17,9 @@ interface TodoState {
 }
  
 const initialState: TodoState = {
-      todos: [],
-      inProgress: [],
-      completedTodos: [],
+    todos: JSON.parse(localStorage.getItem('todos') || '[]'),
+    inProgress: JSON.parse(localStorage.getItem('inProgress') || '[]'),
+    completedTodos: JSON.parse(localStorage.getItem('completed') || '[]'),
 }
 const todosSlice = createSlice({
       name: "todos",
@@ -27,26 +27,33 @@ const todosSlice = createSlice({
       reducers: {
            addIssues(state, action) {
                 state.todos = action.payload;
-           },
+                localStorage.setItem('todos', JSON.stringify(state.todos));   
+            },
            moveInProgress(state, action) {
             const index = state.todos.findIndex((todo) => todo.id === action.payload);  
             if (index !== -1) {
                 const todo = state.todos.splice(index, 1)[0];
+                localStorage.setItem('todos', JSON.stringify(state.todos));
                 state.inProgress.unshift(todo);
+                localStorage.setItem('inProgress', JSON.stringify(state.inProgress));
               };   
            },
            doneTodoMove(state, action) {
             const index = state.inProgress.findIndex((todo) => todo.id === action.payload);
             if(index !== -1){
                 const todo = state.inProgress.splice(index, 1)[0];
+                localStorage.setItem('inProgress', JSON.stringify(state.inProgress));
                 state.completedTodos.unshift(todo);
+                localStorage.setItem('completed', JSON.stringify(state.completedTodos));
             };     
            },
            doneToProgress(state, action) {
             const index = state.completedTodos.findIndex((todo) => todo.id === action.payload);
             if(index !== -1){
                 const todo = state.completedTodos.splice(index, 1)[0];
+                localStorage.setItem('completed', JSON.stringify(state.completedTodos));
                 state.inProgress.unshift(todo);
+                localStorage.setItem('inProgress', JSON.stringify(state.inProgress));
             };  
            },
       }

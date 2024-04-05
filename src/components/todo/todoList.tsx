@@ -10,13 +10,13 @@ function TodoList({ todos, onCheckboxChange, isInProgress  }: TodoListProps) {
 
     return (
       <ul className="border-issue">
-        {todos.map((issue) => (
+        {Array.isArray(todos) && todos.map((issue) => (
           <li key={issue.id}>
             <div>
               <p>{issue.title}</p>
               <span># {issue.number}</span>
               <p>
-                <a className="admin" href={issue.user.html_url}>
+                <a className="admin" href={issue.user?.html_url}>
                   Admin
                 </a> | Comments: {issue.comments}
               </p>

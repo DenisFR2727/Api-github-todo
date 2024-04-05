@@ -16,6 +16,7 @@ function AddTodo() {
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(addIssues(issues));
+        setUrl("");
   };
   const changeHandleIssue = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const url: string = e.target.value;
@@ -40,7 +41,8 @@ function AddTodo() {
       }
       
     }catch(error){
-      console.error(error);
+      
+      console.error('problem with the fetch', error);
     }
   },[url]);
 
@@ -48,7 +50,7 @@ function AddTodo() {
     if (url) {
       fetchIssues();
     };
-  }, [url, fetchIssues]);
+  }, [url,fetchIssues]);
 
   return (
         <form onSubmit={submitForm}>
@@ -56,7 +58,8 @@ function AddTodo() {
             <input type="text" 
                   className="form-control" 
                   id="exampleInputEmail1"
-                  placeholder='Enter repo url' 
+                  placeholder='Enter repo url'
+                  value={url} 
                   onChange={changeHandleIssue} 
             />
           </div>
