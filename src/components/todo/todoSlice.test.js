@@ -16,6 +16,4 @@ describe('todos reducer', () => {
     store.dispatch(addIssues([{ id: 1, title: 'Test issue', number: 1, comments: 0, user: { html_url: 'https://github.com/test' }, completed: false }]));
     expect(store.getState().todos.todos).toEqual([{ id: 1, title: 'Test issue', number: 1, comments: 0, user: { html_url: 'https://github.com/test' }, completed: false }]);
   });
-
-  // Add more tests for other actions here
 });
