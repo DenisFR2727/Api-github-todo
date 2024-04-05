@@ -27,7 +27,7 @@ function AddTodo() {
       const repo = url.replace('https://github.com/', '');
       const response = await fetch(`https://api.github.com/repos/${repo}/issues`, {
         headers: {
-          'Authorization': `token ${api_Key}`
+          'Authorization': `token ${process.env.REACT_APP_GITHUB_PAT}`
         }
       });
       if (response.status === 403) {
