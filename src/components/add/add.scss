@@ -1,0 +1,29 @@
+form {
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    #change-text {
+        width: 50%;
+        
+        input {
+            width: 100%;
+            padding-left: 20px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 10px;
+            color: red;
+        }
+    }
+    button {
+        margin-left: 20px;
+        padding: 10px 20px 10px 20px;
+        color: white;
+        background: black;
+        cursor: pointer;
+        border-radius: 10px;
+        border: 1px solid rgb(255, 255, 255);
+        box-shadow: 2px 2px 2px 3px;
+    }
+}
