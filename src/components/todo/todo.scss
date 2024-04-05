@@ -1,0 +1,45 @@
+.todos {
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+   
+    .general-block {
+        width: 30%;
+        h3 {
+            width: 100%; 
+            display: flex;
+            justify-content: center;
+        }
+        .block {
+            display: flex;
+            justify-content: space-between;
+            // background-color: grey;
+    
+            .border-issue {
+                // background-color: grey;
+                // border: 2px solid black;
+                li {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 10px;
+                    border: 2px solid black;
+                    border-radius: 5px;
+                    background-color: grey;
+                    list-style-type: none;
+                    margin-top: 10px;
+                    .admin {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+   
+}
+.issue-unfound {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+}
