@@ -6,7 +6,7 @@ import { Data } from './addTypes';
 import "./add.scss";
 
 type API_KEY = string;
-const api_Key = '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'
+const api_Key = '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'
 
 function AddTodo() {
   const  dispatch  = useDispatch()
