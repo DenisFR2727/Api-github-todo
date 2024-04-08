@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
+<<<<<<< HEAD
     "@testing-library/jest-dom": "^5.17.0",
+=======
+>>>>>>> b81b22551a12b7f8d7d1ea2ea15d686e0418d3ea
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
     "@types/node": "^16.18.94",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.23",
@@ -44,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@types/jest": "^29.5.12"
   }
 }

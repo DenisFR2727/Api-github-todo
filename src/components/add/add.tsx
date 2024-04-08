@@ -5,8 +5,7 @@ import { addIssues } from '../todo/todoSlice';
 import { Data } from './addTypes';
 import "./add.scss";
 
-type API_KEY = string;
-const api_Key: API_KEY = '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';
+
 
 function AddTodo() {
   const  dispatch  = useDispatch()
@@ -16,6 +15,7 @@ function AddTodo() {
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(addIssues(issues));
+        setUrl("");
   };
   const changeHandleIssue = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const url: string = e.target.value;
@@ -26,7 +26,7 @@ function AddTodo() {
       const repo = url.replace('https://github.com/', '');
       const response = await fetch(`https://api.github.com/repos/${repo}/issues`, {
         headers: {
-          'Authorization': `token ${api_Key}`
+          'Authorization': `token ${process.env.REACT_APP_GITHUB_PAT}`
         }
       });
       if (response.status === 403) {
@@ -41,6 +41,7 @@ function AddTodo() {
       
     }catch(error){
       console.error(error);
+      console.error('problem with the fetch', error);
     }
   },[url]);
 
@@ -50,6 +51,8 @@ function AddTodo() {
     };
   }, [url, fetchIssues]);
 
+
+
   return (
         <form onSubmit={submitForm}>
           <div id="change-text" className="mb-3">
@@ -57,6 +60,7 @@ function AddTodo() {
                   className="form-control" 
                   id="exampleInputEmail1"
                   placeholder='Enter repo url' 
+                  value={url} 
                   onChange={changeHandleIssue} 
             />
           </div>
