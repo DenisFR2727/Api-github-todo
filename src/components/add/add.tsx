@@ -5,13 +5,11 @@ import { addIssues } from '../todo/todoSlice';
 import { Data } from './addTypes';
 import "./add.scss";
 
-
-
 function AddTodo() {
-  const  dispatch  = useDispatch()
+  const  dispatch  = useDispatch();
   const [url, setUrl] = useState<string>('');
   const [issues, setIssues] = useState<Data>([]);
-console.log(process.env.REACT_APP_GITHUB_PAT)
+
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(addIssues(issues));
