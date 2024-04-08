@@ -10,7 +10,7 @@ function TodoList({ todos, onCheckboxChange, isInProgress  }: TodoListProps) {
 
     return (
       <ul className="border-issue">
-        {todos.map((issue) => (
+        {Array.isArray(todos) && todos.map((issue) => (
           <li key={issue.id}>
             <div>
               <p>{issue.title}</p>

@@ -11,7 +11,7 @@ function AddTodo() {
   const  dispatch  = useDispatch()
   const [url, setUrl] = useState<string>('');
   const [issues, setIssues] = useState<Data>([]);
-
+console.log(process.env.REACT_APP_GITHUB_PAT)
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(addIssues(issues));
@@ -26,7 +26,7 @@ function AddTodo() {
       const repo = url.replace('https://github.com/', '');
       const response = await fetch(`https://api.github.com/repos/${repo}/issues`, {
         headers: {
-          'Authorization': `token ${process.env.REACT_APP_GITHUB_PAT}`
+          'Authorization': `token ${process.env.REACT_APP_GITHUB_PUT}`
         }
       });
       if (response.status === 403) {
@@ -40,7 +40,6 @@ function AddTodo() {
       }
       
     }catch(error){
-      console.error(error);
       console.error('problem with the fetch', error);
     }
   },[url]);
@@ -50,8 +49,6 @@ function AddTodo() {
       fetchIssues();
     };
   }, [url, fetchIssues]);
-
-
 
   return (
         <form onSubmit={submitForm}>

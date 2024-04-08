@@ -33,7 +33,6 @@ const todosSlice = createSlice({
             const index = state.todos.findIndex((todo) => todo.id === action.payload);  
             if (index !== -1) {
                 const todo = state.todos.splice(index, 1)[0];
-                state.inProgress.unshift(todo);
                 localStorage.setItem('todos', JSON.stringify(state.todos));
                 state.inProgress.unshift(todo);
                 localStorage.setItem('inProgress', JSON.stringify(state.inProgress));
@@ -44,9 +43,6 @@ const todosSlice = createSlice({
             const index = state.inProgress.findIndex((todo) => todo.id === action.payload);
             if(index !== -1){
                 const todo = state.inProgress.splice(index, 1)[0];
-
-                state.completedTodos.unshift(todo);
-
                 localStorage.setItem('inProgress', JSON.stringify(state.inProgress));
                 state.completedTodos.unshift(todo);
                 localStorage.setItem('completed', JSON.stringify(state.completedTodos));
@@ -56,9 +52,6 @@ const todosSlice = createSlice({
             const index = state.completedTodos.findIndex((todo) => todo.id === action.payload);
             if(index !== -1){
                 const todo = state.completedTodos.splice(index, 1)[0];
-
-                state.inProgress.unshift(todo);
-
                 localStorage.setItem('completed', JSON.stringify(state.completedTodos));
                 state.inProgress.unshift(todo);
                 localStorage.setItem('inProgress', JSON.stringify(state.inProgress));

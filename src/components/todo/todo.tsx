@@ -59,7 +59,7 @@ if(issues.length === 0){
                   <div className="block">
                   <ul className="border-issue">
                     {
-                    Array.isArray(completed) && completed.map((issue) => (
+                    Array.isArray(completed) && completed.map((issue, index) => (
                              <li key={issue.id}>
                                 <div>
                                     <p>{issue.title}</p>
