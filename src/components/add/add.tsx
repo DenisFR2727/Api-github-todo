@@ -31,7 +31,7 @@ function AddTodo() {
         alert('You have exceeded the limit of requests to GitHub API');
         return;
       };
-      if(response.ok || response.status === 200){
+      if(response.ok){
         const data = await response.json();
    
         setIssues(data);
