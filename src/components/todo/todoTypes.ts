@@ -1,7 +1,7 @@
 type User = {
     html_url: string;
 };
-type TodoStatus = 'todos' | 'inProgress' | 'completed';
+export type TodoStatus = 'todos' | 'inProgress' | 'completed';
 export interface IIssue {
     id: number;
     title: string;
@@ -9,5 +9,4 @@ export interface IIssue {
     comments: number;
     user: User;
     status: TodoStatus;
-    completed: boolean;
 }

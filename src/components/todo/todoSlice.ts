@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 type User = {
     html_url: string;
 };
@@ -13,10 +13,9 @@ interface Todo {
     status: TodoStatus;
     completed: boolean;
 }
-interface TodoState {
+export interface TodoState {
     todos: Todo[];
 }
-
 const initialState: TodoState = {
     todos: JSON.parse(localStorage.getItem('todos') || '[]'),
 };
@@ -35,26 +34,14 @@ const todosSlice = createSlice({
             const { id, status } = action.payload;
             const index = state.todos.findIndex((todo: Todo) => todo.id === id);
             if (index !== -1) {
-                state.todos[index].status = status;
+                const [todo] = state.todos.splice(index, 1);
+                todo.status = status;
+                state.todos.unshift(todo);
                 localStorage.setItem('todos', JSON.stringify(state.todos));
             }
         },
     },
 });
-export const todosList = createSelector(
-    (state: TodoState) => state.todos,
-    (todos: Todo[]) => todos.filter((todo) => todo.status === 'todos')
-);
-
-export const inProgressList = createSelector(
-    (state: TodoState) => state.todos,
-    (todos: Todo[]) => todos.filter((todo) => todo.status === 'inProgress')
-);
-
-export const completedTodosList = createSelector(
-    (state: TodoState) => state.todos,
-    (todos: Todo[]) => todos.filter((todo) => todo.status === 'completed')
-);
 const { actions, reducer } = todosSlice;
 
 export const { addIssues, setStatus } = actions;

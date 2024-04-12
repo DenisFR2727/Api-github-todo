@@ -1,19 +1,29 @@
 import { useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    todosList,
-    inProgressList,
-    completedTodosList,
-    setStatus,
-} from './todoSlice';
+import { setStatus } from './todoSlice';
 import TodoList from './todoList';
 import './todo.scss';
-
+import { IIssue } from './todoTypes';
+import { RootState } from '../../store/store';
 function Todo() {
     const dispatch = useDispatch();
-    const issues = useSelector(todosList);
-    const progress = useSelector(inProgressList);
-    const completed = useSelector(completedTodosList);
+    const issues = useSelector((state: RootState) =>
+        Array.isArray(state.todos)
+            ? state.todos.filter((todo: IIssue) => todo.status === 'todos')
+            : []
+    );
+
+    const progress = useSelector((state: RootState) =>
+        Array.isArray(state.todos)
+            ? state.todos.filter((todo: IIssue) => todo.status === 'inProgress')
+            : []
+    );
+
+    const completed = useSelector((state: RootState) =>
+        Array.isArray(state.todos)
+            ? state.todos.filter((todo: IIssue) => todo.status === 'completed')
+            : []
+    );
 
     const moveTodo = useCallback(
         (id: number, status: string) => {

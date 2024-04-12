@@ -29,6 +29,7 @@ function TodoList({ todos, onCheckboxChange, isInProgress }: TodoListProps) {
                             {isInProgress ? 'Done' : 'In Progress'}
                         </label>
                         <input
+                            id="inProgress"
                             type="checkbox"
                             onChange={() =>
                                 onCheckboxChange(issue.id, issue.status)
